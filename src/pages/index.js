@@ -30,7 +30,10 @@ export default IndexPage
 
 export const pageQuery = graphql`
   query BlogPosts {
-    allMdx(sort: { fields: [frontmatter___date], order: DESC }) {
+    allMdx(
+      filter: { fields: { published: { eq: true } } }
+      sort: { fields: [frontmatter___date], order: DESC }
+    ) {
       edges {
         node {
           id
