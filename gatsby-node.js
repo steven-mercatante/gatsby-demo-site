@@ -11,6 +11,12 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
       name: "slug",
       value: slug,
     })
+
+    createNodeField({
+      node,
+      name: "published",
+      value: node.frontmatter.published === true,
+    })
   }
 }
 
