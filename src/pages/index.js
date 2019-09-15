@@ -9,6 +9,7 @@ const IndexPage = ({ data }) => {
   return (
     <Layout>
       <SEO title="Home" />
+      <h3>Showing posts published before: $lastBuiltAt</h3>
       {posts.map(post => {
         return (
           <div key={post.node.id}>
@@ -29,8 +30,11 @@ const IndexPage = ({ data }) => {
 export default IndexPage
 
 export const pageQuery = graphql`
-  query BlogPosts {
-    allMdx(sort: { fields: [frontmatter___date], order: DESC }) {
+  query BlogPosts($lastBuiltAt: Date!) {
+    allMdx(
+      filter: { frontmatter: { date: { lte: $lastBuiltAt } } }
+      sort: { fields: [frontmatter___date], order: DESC }
+    ) {
       edges {
         node {
           id
