@@ -6,7 +6,6 @@ import Image from "../components/image"
 import SEO from "../components/seo"
 
 const IndexPage = ({ data }) => {
-  console.log(data)
   const posts = data.allMdx.edges
   return (
     <Layout>
