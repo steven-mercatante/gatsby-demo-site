@@ -17,7 +17,10 @@ const IndexPage = ({ data }) => {
             <Link to={post.node.fields.slug}>
               {post.node.frontmatter.title}
             </Link>
-            {post.node.frontmatter.date}
+            <p>
+              <small>{post.node.frontmatter.date}</small>
+            </p>
+            <p>{post.node.excerpt}</p>
           </div>
         )
       })}
@@ -40,6 +43,7 @@ export const pageQuery = graphql`
             title
             date(formatString: "DD MMMM, YYYY")
           }
+          excerpt
         }
       }
     }
