@@ -41,3 +41,15 @@ exports.createPages = async ({ graphql, actions }) => {
     })
   })
 }
+
+exports.onCreatePage = ({ page, actions }) => {
+  const { createPage, deletePage } = actions
+  deletePage(page)
+  createPage({
+    ...page,
+    context: {
+      ...page.context,
+      lastBuiltAt: new Date().toLocaleDateString("en-US"),
+    },
+  })
+}
